@@ -25,10 +25,18 @@ export default function App() {
   const handleClick = (option) => {
     setSelected(option);
     if (option === currentQuiz.answer[language]) {
-      setResult("正解！🎉");
+      setResult(
+        language === "en" ? "Correct" :
+        language === "ja" ? "正解！🎉" :
+        "¡Correcto! 🎉"
+      );
       setScore(prev => prev + 1);
     } else {
-      setResult("不正解…😢");
+      setResult(
+        language === "en" ? "Incorrect" :
+        language === "ja" ? "不正解…😢" :
+        "Incorrecto… 😢"
+      );
     }
   };
 
