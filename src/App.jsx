@@ -143,7 +143,14 @@ export default function App() {
 
       {selected && (
         <div className="mt-6 flex flex-col items-center">
-          <p className="text-xl mb-3">{result}</p>
+          <p 
+          className={`text-xl mb-3 ${
+            result === "Incorrect" || result === "不正解…😢" || result === "Incorrecto… 😢"
+            ? "text-red-500"
+            : "text-green-500"
+          }`}
+          >
+            {result}</p>
           <button
             onClick={handleNext}
             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
