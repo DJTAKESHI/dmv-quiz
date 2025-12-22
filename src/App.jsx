@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./index.css";
 import { quizzes } from "./data/quizzes";
 import { shuffleArray } from "./utils";
+import ProgressBar from "./components/ProgressBar";
 
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
   const [score, setScore] = useState(0); // 正解数をカウント
   const [isFinished, setIsFinished] = useState(false); // 最終結果ページフラグ
   const [shuffledOptions, setShuffledOptions] = useState([]);
+  const [answers, setAnswers] = useState(Array(quizzes.length).fill(undefined)); // 各問題の回答状況を保存
 
 
   const currentQuiz = quizzes[currentIndex];
@@ -23,8 +25,10 @@ export default function App() {
   },[currentIndex,language]);
 
   const handleClick = (option) => {
+
     setSelected(option);
-    if (option === currentQuiz.answer[language]) {
+    const isCorrect = option === currentQuiz.answer[language];
+    if (isCorrect) {
       setResult(
         language === "en" ? "Correct" :
         language === "ja" ? "正解！🎉" :
@@ -38,6 +42,13 @@ export default function App() {
         "Incorrecto… 😢"
       );
     }
+
+    setAnswers(prev => {
+      const copy = [...prev];
+      copy[currentIndex] = isCorrect ? "correct" : "incorrect";
+      return copy;
+
+    });
   };
 
   const handleNext = () => {
@@ -51,6 +62,7 @@ export default function App() {
   };
 
   return isFinished ? (
+    // 最終結果ページ
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
       <h1 className="text-3xl font-bold mb-6">
         {language === "en" ? "Results" : language === "ja" ? "結果" : "Resultados"}
@@ -69,6 +81,7 @@ export default function App() {
           setIsFinished(false);
           setSelected("");
           setResult("");
+          setAnswers(Array(quizzes.length).fill(undefined));
         }}
         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
@@ -78,6 +91,7 @@ export default function App() {
 
   ) : (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
+        {/* 言語選択ボタン */}
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => setLanguage("ja")}
@@ -98,48 +112,66 @@ export default function App() {
           Español
          </button>
       </div>
+      {/* PC:　横並び　スマホ:　縦並び */}
+      <div className="flex flex-col md:flex-row md:items-center md:justify-center md:gap-4 w-full">
 
-      <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6">
-      {/*　問題文 */}  
-      <h2 className="text-2xl font-bold mb-6 text-center">{currentQuiz.question[language]}</h2>
-      {/*　選択肢 */}  
-      <div className="flex flex-col space-y-3">
-        {/* {currentQuiz.options[language].map((option) => (
-          <button
-            key={option}
-            onClick={() => handleClick(option)}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-          >
-            {option}
-          </button>
-        ))} */}
+        
 
-        {shuffledOptions.map((option => {
-          let bgColor = "bg-blue-500 hover:bg-blue-600 text-white";
 
-          if (selected){
-            if (option === currentQuiz.answer[language]) {
-              bgColor = "bg-green-500 text-white"; // 正解
-            } else if (option === selected) {
-              bgColor = "bg-red-500 text-white"; // 間違えた選択
-            } else {
-              bgColor = "bg-gray-300 text-gray-600"; // 回答後の残り
-            }
-          }
-
-          return (
-            <button
-              key={option}
-              disabled={!!selected}
-              onClick={() => handleClick(option)}
-              className={`px-4 py-2 rounded ${bgColor}`}
+        {/* クイズカード */}
+        <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 mb-4 md:mb-0">
+          {/*　問題文 */}  
+          <h2 className="text-2xl font-bold mb-6 text-center">{currentQuiz.question[language]}</h2>
+          {/*　選択肢 */}  
+          <div className="flex flex-col space-y-3">
+            {/* {currentQuiz.options[language].map((option) => (
+              <button
+                key={option}
+                onClick={() => handleClick(option)}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
               >
                 {option}
               </button>
-          );
-        }))}
+            ))} */}
+
+            {shuffledOptions.map((option => {
+              let bgColor = "bg-blue-500 hover:bg-blue-600 text-white";
+
+              if (selected){
+                if (option === currentQuiz.answer[language]) {
+                  bgColor = "bg-green-500 text-white"; // 正解
+                } else if (option === selected) {
+                  bgColor = "bg-red-500 text-white"; // 間違えた選択
+                } else {
+                  bgColor = "bg-gray-300 text-gray-600"; // 回答後の残り
+                }
+              }
+
+              return (
+                <button
+                  key={option}
+                  disabled={!!selected}
+                  onClick={() => handleClick(option)}
+                  className={`px-4 py-2 rounded ${bgColor}`}
+                  >
+                    {option}
+                  </button>
+              );
+            }))}
+          </div>
       </div>
-    </div>
+
+      {/* 進捗バーコンポーネント呼び出し */}
+      <div className="w-full md:w-auto p-6 mb-4">
+        <ProgressBar 
+          total={quizzes.length} 
+          current={currentIndex}
+          answers={answers} 
+          />  
+          </div>
+      </div>
+
+      {/* 結果表示と次の問題ボタン */}
 
       {selected && (
         <div className="mt-6 flex flex-col items-center">
@@ -159,6 +191,12 @@ export default function App() {
           </button>
         </div>
       )}
+
+
+  
+
+
+
       <p className="mt-6 text-gray-500">
         {currentIndex + 1}/{quizzes.length} {language === "en" ? "Question" : language === "ja" ? "問目" : "Pregunta"}
       </p>
