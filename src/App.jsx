@@ -92,6 +92,9 @@ export default function App() {
   ) : (
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
         {/* 言語選択ボタン */}
+    <h1 className="text-4xl font-bold mb-6 text-center">
+      DMV Practice Quiz
+      </h1>
       <div className="flex gap-2 mb-4">
         <button
           onClick={() => setLanguage("ja")}
@@ -122,6 +125,16 @@ export default function App() {
         <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-6 mb-4 md:mb-0">
           {/*　問題文 */}  
           <h2 className="text-2xl font-bold mb-6 text-center">{currentQuiz.question[language]}</h2>
+
+          {/*　画像 */}
+          {currentQuiz.image && (
+            <img 
+              src={currentQuiz.image}
+              alt="Quiz Illustration"
+              className="w-full h-auto mb-6 rounded"
+            />  
+          )}  
+
           {/*　選択肢 */}  
           <div className="flex flex-col space-y-3">
             {/* {currentQuiz.options[language].map((option) => (
@@ -166,7 +179,12 @@ export default function App() {
         <ProgressBar 
           total={quizzes.length} 
           current={currentIndex}
-          answers={answers} 
+          answers={answers}
+          onJump={(idx) => {
+            setCurrentIndex(idx);
+            setSelected("");
+            setResult("");
+          }} 
           />  
           </div>
       </div>
@@ -200,6 +218,22 @@ export default function App() {
       <p className="mt-6 text-gray-500">
         {currentIndex + 1}/{quizzes.length} {language === "en" ? "Question" : language === "ja" ? "問目" : "Pregunta"}
       </p>
+
+     <div className="flex flex-col items-centerjustify-center mt-6">
+     <button 
+        onClick={() => {
+          setCurrentIndex(0);
+          setScore(0);
+          setSelected("");
+          setResult("");
+          setAnswers(Array(quizzes.length).fill(undefined));
+        }}
+        className="px-4 py-2 bg-gray-500 rounded text-white text-sm text-gray-500 hover:text-blue-600 mt-4"
+      >
+        
+        {language === "en" ? "Try again" : language === "ja" ? "もう一度" : "Intentar de nuevo"}
+      </button>
+      </div>
     </div>
 
   );

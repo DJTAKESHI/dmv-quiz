@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ProgressBar({ total, current, answers }) {
+export default function ProgressBar({ total, current, answers, onJump }) {
   const questionsPerRow = 10;
   const rows = [];
   for (let i = 0; i < total; i += questionsPerRow) {
@@ -20,6 +20,7 @@ export default function ProgressBar({ total, current, answers }) {
             return (
               <div
               key={idx}
+              onClick={() => onJump(idx)}
               className={`
                 h-2 rounded transition-all duration-300           
                 ${bgColor}

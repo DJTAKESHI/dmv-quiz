@@ -421,9 +421,167 @@ export const quizzes = [
       es: "Vehículos del lado de línea discontinua",
     },
   },
+  {
+    "question": {
+      "ja": "この標識は何を意味します？",
+      "en": "What does this sign mean? ",
+      "es": "¿Qué significa esta señal? "
+    },
+    "options": {
+      "ja": ["学校あり・徐行", "駐車禁止", "一時停止", "高速道路入口"],
+      "en": ["School zone / slow down", "No parking", "Stop", "Highway entrance"],
+      "es": ["Zona escolar / reducir velocidad", "Prohibido estacionar", "Pare", "Entrada a autopista"]
+    },
+    "answer": {
+      "ja": "学校あり・徐行",
+      "en": "School zone / slow down",
+      "es": "Zona escolar / reducir velocidad"
+    },
+    image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/school.webp"
+  },
+  {
+    "question": {
+      "ja": "この標識は何を意味します？",
+      "en": "What does this sign mean? ",
+      "es": "¿Qué significa esta señal? "
+    },
+    "options": {
+      "ja": ["必ず停止", "徐行して進む", "駐車可", "歩行者注意"],
+      "en": ["Stop completely", "Slow down and proceed", "Parking allowed", "Watch for pedestrians"],
+      "es": ["Detenerse completamente", "Reducir la velocidad y continuar", "Se permite estacionar", "Atención a peatones"]
+    },
+    "answer": {
+      "ja": "必ず停止",
+      "en": "Stop completely",
+      "es": "Detenerse completamente"
+    },
+    image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/stop.webp"
+  },
+  {
+    "question": {
+      "ja": "この標識は何を意味します？",
+      "en": "What does this sign mean? ",
+      "es": "¿Qué significa esta señal? "
+    },
+    "options": {
+      "ja": ["駐車禁止", "進入禁止", "一時停止", "徐行"],
+      "en": ["No parking", "Do not enter", "Stop", "Slow down"],
+      "es": ["Prohibido estacionar", "Prohibido el paso", "Pare", "Reducir velocidad"]
+    },
+    "answer": {
+      "ja": "駐車禁止",
+      "en": "No parking",
+      "es": "Prohibido estacionar"
+    },
+    image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/noparking.webp"
+  },
+  {
+    "question": {
+      "ja": "この標識は何を意味します？",
+      "en": "What does this sign mean? ",
+      "es": "¿Qué significa esta señal? "
+    },
+    "options": {
+      "ja": ["右折のみ", "左折のみ", "Uターン禁止", "直進のみ"],
+      "en": ["Right turn only", "Left turn only", "No U-turn", "Straight only"],
+      "es": ["Solo giro a la derecha", "Solo giro a la izquierda", "Prohibido dar vuelta en U", "Solo recto"]
+    },
+    "answer": {
+      "ja": "右折のみ",
+      "en": "Right turn only",
+      "es": "Solo giro a la derecha"
+    },
+    image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/rightturnonly.webp"
+  },
+  {
+    "question": {
+      "ja": "この標識は何を意味します？ ",
+      "en": "What does this sign mean? ",
+      "es": "¿Qué significa esta señal? "
+    },
+    "options": {
+      "ja": ["注意・警告", "停止", "駐車禁止", "高速道路入口"],
+      "en": ["Warning / caution", "Stop", "No parking", "Highway entrance"],
+      "es": ["Precaución / advertencia", "Pare", "Prohibido estacionar", "Entrada a autopista"]
+    },
+    "answer": {
+      "ja": "注意・警告",
+      "en": "Warning / caution",
+      "es": "Precaución / advertencia"
+    },
+    image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/warning.webp"
+  },
+    {
+    "question": {
+      "ja": "この標識は何を意味します？ ",
+      "en": "What does this sign mean? ",
+      "es": "¿Qué significa esta señal? "
+    },
+   "options": {
+      "en": [
+        "Railroad crossing ahead",
+        "Train station ahead",
+        "Subway entrance",
+        "No passing zone"
+      ],
+      "ja": [
+        "踏切あり",
+        "駅が近い",
+        "地下鉄の入口",
+        "追い越し禁止"
+      ],
+      "es": [
+        "Cruce de ferrocarril adelante",
+        "Estación de tren adelante",
+        "Entrada del metro",
+        "Zona de no adelantar"
+      ]
+    },
+    "answer": {
+      "en": "Railroad crossing ahead",
+      "ja": "踏切あり",
+      "es": "Cruce de ferrocarril adelante"
+    
+  },
+    image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/railroad.webp"
+  },
+  {
+  "question": {
+    "en": "What does this road sign mean?",
+    "ja": "この標識は何を意味しますか？",
+    "es": "¿Qué significa esta señal de tránsito?"
+  },
+  "options": {
+    "en": [
+      "Narrow road ahead",
+      "Road closed",
+      "One-way traffic",
+      "Slippery road"
+    ],
+    "ja": [
+      "この先道幅が狭くなる",
+      "通行止め",
+      "一方通行",
+      "路面が滑りやすい"
+    ],
+    "es": [
+      "Camino estrecho más adelante",
+      "Carretera cerrada",
+      "Tráfico en un solo sentido",
+      "Calzada resbaladiza"
+    ]
+  },
+  "answer": {
+    "en": "Narrow road ahead",
+    "ja": "この先道幅が狭くなる",
+    "es": "Camino estrecho más adelante"
+  },
+  image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/narrowroad.webp"
+}
 
-  // 13–25  
-  // （文字数制限のため次のメッセージに続きます）
+
+
+
 
   
 ];
