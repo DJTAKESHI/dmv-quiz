@@ -83,6 +83,9 @@ export default function App() {
     setResult("");
     setAnswers(Array(quizzes.length).fill(undefined));
   };
+  const accuracy = score / quizzes.length;
+  const isPassed = accuracy > 0.8; // ※ 0.8以下は不合格
+
 
   return isFinished ? (
     // 最終結果ページ
@@ -97,7 +100,8 @@ export default function App() {
           ? `あなたの正解数は ${score} / ${quizzes.length}です`
           : `Obtuviste ${score} de ${quizzes.length} correctas`}
       </p>
-      {score / quizzes.length >= 0.8 && (
+
+      {isPassed ? (
         <p className="text-lg font-semibold text-green-600 mb-4">
           {language === "en"
             ? "You passed the exam!"
@@ -105,7 +109,17 @@ export default function App() {
             ? "あなたは試験に合格しました"
             : "¡Aprobaste el examen!"}
         </p>
+
+      ) : (
+                <p className="text-lg font-semibold text-red-600 mb-4">
+          {language === "en"
+            ? "You failed the exam."
+            : language === "ja"
+            ? "あなたは試験に不合格でした"
+            : "No aprobaste el examen."}
+        </p>
       )}
+      
       <button
         onClick={resetQuiz}
         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
