@@ -1,12 +1,15 @@
 
 
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./index.css";
 import { quizzes } from "./data/quizzes";
 import { shuffleArray } from "./utils";
 import ProgressBar from "./components/ProgressBar";
 
 export default function App() {
+  const navigate = useNavigate();
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState("");
   const [result, setResult] = useState("");
@@ -83,6 +86,22 @@ export default function App() {
     setResult("");
     setAnswers(Array(quizzes.length).fill(undefined));
   };
+  const tryAgain = () => {
+    // GA4イベント
+    if (typeof gtag === "function") {
+      gtag('event','quiz_try_again',{
+        language:language
+      });
+    }
+
+    // 状態をリセット
+    setScore(0);
+    setCurrent(0);
+    setAnswers([]);
+    setIsFinished(false);
+    // ページ遷移
+    navigate("/quiz");
+  };
   const accuracy = score / quizzes.length;
   const isPassed = accuracy > 0.8; // ※ 0.8以下は不合格
 
@@ -121,7 +140,7 @@ export default function App() {
       )}
       
       <button
-        onClick={resetQuiz}
+        onClick={tryAgain}
         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       >
         {language === "en" ? "Try again" : language === "ja" ? "もう一度" : "Intentar de nuevo"}

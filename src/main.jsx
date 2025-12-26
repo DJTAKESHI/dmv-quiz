@@ -1,6 +1,7 @@
 import "./index.css"; // Tailwind読み込み
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 // import ReactGA from "react-ga4";
 
@@ -22,6 +23,8 @@ ReactGA.send("pageview");
 // ReactGA.default.send("pageview")
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <BrowserRouter>
     <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
