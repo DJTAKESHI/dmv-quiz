@@ -22,9 +22,12 @@ export default function ProgressBar({ total, current, answers, onJump }) {
               key={idx}
               onClick={() => onJump(idx)}
               className={`
-                h-2 rounded transition-all duration-300           
-                ${bgColor}
-                flex-1 lg:flex-none lg:h-6 lg:w-6 flex items-center justify-center text-white text-xs
+                    rounded transition-all duration-300
+                    ${bgColor}
+                    flex-1 h-4 sm:h-5 md:h-6 lg:h-6
+                    flex items-center justify-center
+                    text-white text-[0.6rem] sm:text-xs md:text-sm lg:text-xs
+                    lg:flex-none lg:w-6
               `}
                 >
                 {/* PCでは数字表示 */}

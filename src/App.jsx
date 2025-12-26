@@ -74,7 +74,7 @@ export default function App() {
     if (typeof gtag === "function") {
       gtag('event','quiz_restart',{
         language:language
-      });
+      });r
     }
     setCurrentIndex(0);
     setScore(0);
@@ -83,6 +83,9 @@ export default function App() {
     setResult("");
     setAnswers(Array(quizzes.length).fill(undefined));
   };
+  const accuracy = score / quizzes.length;
+  const isPassed = accuracy > 0.8; // ※ 0.8以下は不合格
+
 
   return isFinished ? (
     // 最終結果ページ
@@ -97,6 +100,26 @@ export default function App() {
           ? `あなたの正解数は ${score} / ${quizzes.length}です`
           : `Obtuviste ${score} de ${quizzes.length} correctas`}
       </p>
+
+      {isPassed ? (
+        <p className="text-lg font-semibold text-green-600 mb-4">
+          {language === "en"
+            ? "You passed the exam!"
+            : language === "ja"
+            ? "あなたは試験に合格しました"
+            : "¡Aprobaste el examen!"}
+        </p>
+
+      ) : (
+                <p className="text-lg font-semibold text-red-600 mb-4">
+          {language === "en"
+            ? "You failed the exam."
+            : language === "ja"
+            ? "あなたは試験に不合格でした"
+            : "No aprobaste el examen."}
+        </p>
+      )}
+      
       <button
         onClick={resetQuiz}
         className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -237,23 +260,7 @@ export default function App() {
         💬 Feedback
       </button>
 
-      {/* Feedback モーダル */}
-      {/* {showFeedback && (
-        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg p-6 w-11/12 max-w-md">
-            <h2 className="text-xl font-bold mb-4">
-              {language === "ja" ? "ご意見を教えてください" : "Your feedback"}
-            </h2>
-            <p className="text-sm text-gray-500 mb-3">Question: {currentIndex + 1}</p>
-            <button
-              onClick={() => setShowFeedback(false)}
-              className="mt-4 text-sm text-gray-500 hover:text-gray-700"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )} */}
+
     </div>
   );
 }
