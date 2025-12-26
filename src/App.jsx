@@ -94,16 +94,31 @@ export default function App() {
       });
     }
 
-    // 状態をリセット
+    // 状態リセット
+    setCurrentIndex(0);
     setScore(0);
-    setCurrent(0);
-    setAnswers([]);
     setIsFinished(false);
+    setSelected("");
+    setResult("");
+    setAnswers(Array(quizzes.length).fill(undefined));
+
     // ページ遷移
-    navigate("/quiz");
+    // navigate("/quiz");
   };
   const accuracy = score / quizzes.length;
   const isPassed = accuracy > 0.8; // ※ 0.8以下は不合格
+
+  const finishQuizShortcut = () => {
+  // 最終結果画面に必要な状態をセット
+  setIsFinished(true);
+  // スコアを途中までの値にしても良い
+  // 例えば今のスコアをそのまま使う
+  gtag('event','quiz_shortcut_complete',{
+    score: score,
+    total: quizzes.length
+  });
+};
+
 
 
   return isFinished ? (
@@ -130,6 +145,8 @@ export default function App() {
         </p>
 
       ) : (
+        
+
                 <p className="text-lg font-semibold text-red-600 mb-4">
           {language === "en"
             ? "You failed the exam."
@@ -147,6 +164,7 @@ export default function App() {
       </button>
     </div>
   ) : (
+    
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100 p-4">
       {/* 言語選択ボタン */}
       <h1 className="text-4xl font-bold mb-6 text-center">DMV Practice Quiz</h1>
@@ -261,6 +279,17 @@ export default function App() {
           {language === "en" ? "Try again" : language === "ja" ? "もう一度" : "Intentar de nuevo"}
         </button>
       </div>
+
+      <div className="fixed bottom-16 right-4 z-50">
+
+  {/* <button
+    onClick={finishQuizShortcut}
+    className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+  >
+    ショートカットで結果画面へ
+  </button>
+</div> */}
+
 
       {/* Feedback ボタン */}
       <button
