@@ -567,7 +567,7 @@ export const quizzes = [
     "es": [
       "Camino estrecho más adelante",
       "Carretera cerrada",
-      "Tráfico en un solo sentido",
+     "Tráfico en un solo sentido",
       "Calzada resbaladiza"
     ]
   },
@@ -577,7 +577,121 @@ export const quizzes = [
     "es": "Camino estrecho más adelante"
   },
   image: "https://dmv-quiz.s3.us-east-1.amazonaws.com/narrowroad.webp"
-}
+},
+
+
+{
+    "question": {
+      "ja": "大型トラックについて正しいのはどれですか？",
+      "en": "Which of the following is true about large trucks?",
+      "es": "¿Cuál de las siguientes es verdadera sobre los camiones grandes?"
+    },
+    "options": {
+      "ja": 
+      ["多くのトレーラーで構成されており、乗用車より操作しやすい", 
+        "死角が大きく、運転手から他の車両が見えにくい", 
+        "非常に強力な緊急ブレーキがあり、すぐに停止できる", 
+        "瞬時に停止できる"],
+      "en": [
+        "They are made of many trailers, which make them more maneuverable than passenger vehicles.", 
+        "They have large blind spots, which makes it difficult for the truck driver to see other vehicles.", 
+        "They have large and powerful emergency brakes, which gives them the capability to stop quickly.", 
+        "They can stop instantly without any distance."],
+      "es": ["Están compuestos de muchos remolques, lo que los hace más maniobrables que los vehículos de pasajeros.", "Tienen grandes puntos ciegos, lo que dificulta que el conductor vea otros vehículos.", "Tienen frenos de emergencia grandes y potentes, lo que les da la capacidad de detenerse rápidamente.", "Pueden detenerse instantáneamente sin ninguna distancia."]
+    },
+    "answer": {
+      "ja": "死角が大きく、運転手から他の車両が見えにくい",
+      "en": "They have large blind spots, which makes it difficult for the truck driver to see other vehicles.",
+      "es": "Tienen grandes puntos ciegos, lo que dificulta que el conductor vea otros vehículos."
+    }
+  },
+  {
+    "question": {
+      "ja": "運転中に違法な行為はどれですか？",
+      "en": "Which of the following is illegal while driving?",
+      "es": "¿Cuál de las siguientes es ilegal mientras se conduce?"
+    },
+    "options": {
+      "ja": ["両耳を覆うヘッドセットや耳栓を使用する", "片耳だけを覆うヘッドセットや耳栓を使用する", "住宅街でクルーズコントロールを使用する", "両手を使わずに運転する"],
+      "en": ["Wearing a headset or ear plugs that covers both ears.", "Wearing a headset or ear plugs that covers one ear.", "Using cruise control on residential streets.", "Driving without both hands on the wheel."],
+      "es": ["Usar auriculares o tapones que cubran ambos oídos.", "Usar auriculares o tapones que cubran un oído.", "Usar control de crucero en calles residenciales.", "Conducir sin usar ambas manos en el volante."]
+    },
+    "answer": {
+      "ja": "両耳を覆うヘッドセットや耳栓を使用する",
+      "en": "Wearing a headset or ear plugs that covers both ears.",
+      "es": "Usar auriculares o tapones que cubran ambos oídos."
+    }
+  },
+  {
+    "question": {
+      "ja": "交通が遅く混雑していて、次の交差点に着く前に鉄道の踏切を渡らなければならない場合、どうすべきですか？",
+      "en": "What should you do when traffic is slow and heavy, and you must cross railroad tracks before reaching the upcoming intersection?",
+      "es": "¿Qué debes hacer cuando el tráfico es lento y pesado, y debes cruzar las vías del tren antes de llegar a la próxima intersección?"
+    },
+    "options": {
+      "ja": ["前の車が渡っているときに渡る", "交差点の信号が青になるまで踏切で待つ", "完全に渡れるまで待ってから進む", "列車が来る前に急いで渡る"],
+      "en": ["Begin crossing when the vehicle in front of you is crossing the tracks.", "Wait on the tracks until the stoplight at the intersection turns green.", "Wait until you can completely cross the tracks before proceeding.", "Speed up to cross before the train arrives."],
+      "es": ["Comenzar a cruzar cuando el vehículo delante de ti está cruzando.", "Esperar en las vías hasta que el semáforo de la intersección se ponga en verde.", "Esperar hasta poder cruzar completamente las vías antes de proceder.", "Acelerar para cruzar antes de que llegue el tren."]
+    },
+    "answer": {
+      "ja": "完全に渡れるまで待ってから進む",
+      "en": "Wait until you can completely cross the tracks before proceeding.",
+      "es": "Esperar hasta poder cruzar completamente las vías antes de proceder."
+    }
+  },
+  {
+    "question": {
+      "ja": "あおり運転されている場合、どうすべきですか？",
+      "en": "Which of the following should you do if you are being followed by a tailgater?",
+      "es": "¿Cuál de las siguientes debes hacer si estás siendo seguido de cerca por otro vehículo?"
+    },
+    "options": {
+      "ja": ["車線を変えて追い越させる", "ブレーキを軽くタップして減速を知らせる", "速度を上げて相手に合わせる", "すぐに停車する"],
+      "en": ["Change lanes and allow the tailgater to pass.", "Tap the brakes to signal you are moving at a slower pace.", "Increase your speed to match the speed of the vehicle.", "Stop immediately in the lane."],
+      "es": ["Cambiar de carril y dejar que el vehículo pase.", "Golpear ligeramente los frenos para señalar que vas más lento.", "Aumentar la velocidad para igualar al vehículo.", "Detenerse inmediatamente en el carril."]
+    },
+    "answer": {
+      "ja": "車線を変えて追い越させる",
+      "en": "Change lanes and allow the tailgater to pass.",
+      "es": "Cambiar de carril y dejar que el vehículo pase."
+    }
+  },
+  {
+    "question": {
+      "ja": "制限速度で運転している場合でも、スピード違反切符をもらうことはありますか？",
+      "en": "When you are driving the speed limit, you can be given a speeding ticket:",
+      "es": "Cuando conduces al límite de velocidad, ¿puedes recibir una multa por exceso de velocidad?"
+    },
+    "options": {
+      "ja": ["道路や天候の状況でより遅い速度が必要な場合", "常に合法なので絶対にない", "急カーブに近づく場合のみ", "他のドライバーが減速を指示した場合"],
+      "en": ["If road or weather conditions require a slower speed.", "Under no circumstances because it is always legal.", "Only if you are approaching a sharp curve in the road.", "If another driver signals you to slow down."],
+      "es": ["Si las condiciones de la carretera o el clima requieren velocidad menor.", "Bajo ninguna circunstancia porque siempre es legal.", "Solo si te aproximas a una curva cerrada.", "Si otro conductor te indica reducir la velocidad."]
+    },
+    "answer": {
+      "ja": "道路や天候の状況でより遅い速度が必要な場合",
+      "en": "If road or weather conditions require a slower speed.",
+      "es": "Si las condiciones de la carretera o el clima requieren velocidad menor."
+    }
+  },
+  {
+    "question": {
+      "ja": "開封済みのアルコール飲料容器を車内で運転中に持つのはいつ合法ですか？",
+      "en": "When is it legal for a person to drive with an alcoholic beverage container that has been opened?",
+      "es": "¿Cuándo es legal que una persona conduzca con un recipiente de bebida alcohólica que ha sido abierto?"
+    },
+    "options": {
+      "ja": ["前席の下にある場合", "トランクにある場合", "グローブボックスにある場合", "運転席横のドアポケットにある場合"],
+      "en": ["If the container is under the front seat.", "If the container is in the trunk of the vehicle.", "If the container is in the glove compartment.", "If the container is in the door pocket next to the driver."],
+      "es": ["Si el recipiente está debajo del asiento delantero.", "Si el recipiente está en el maletero del vehículo.", "Si el recipiente está en la guantera.", "Si el recipiente está en el bolsillo de la puerta junto al conductor."]
+    },
+    "answer": {
+      "ja": "トランクにある場合",
+      "en": "If the container is in the trunk of the vehicle.",
+      "es": "Si el recipiente está en el maletero del vehículo."
+    }
+  }
+
+
 
 
 
