@@ -281,14 +281,14 @@ export default function App() {
       </div>
 
       <div className="fixed bottom-16 right-4 z-50">
-
+        
   {/* <button
     onClick={finishQuizShortcut}
     className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
   >
     ショートカットで結果画面へ
-  </button>
-</div> */}
+  </button> */}
+</div>
 
 
       {/* Feedback ボタン */}
