@@ -4,7 +4,7 @@ FROM node:20-bullseye
 WORKDIR /app
 
 
-COPY package.json package-lock.json ./
+COPY package.json  package-lock.json ./
 RUN npm install
 
 
@@ -12,4 +12,4 @@ COPY . .
 
 EXPOSE 5173
 
-CMD ["npx","vite","--host"]
+CMD ["npx","vite","--host","0.0.0.0"]

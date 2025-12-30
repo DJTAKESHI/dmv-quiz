@@ -10,18 +10,22 @@ ReactGA.initialize("G-W3M8628BRB", { debug: true });
 ReactGA.send("pageview");
 
 
-// const ReactGA = await import('react-ga4')
-// ReactGA.default.initialize("G-W3M8628BRB",{
-//   debug:true,
-// })
+function getSessionId() {
+  let id = localStorage.getItem("quiz_session_id");
+  if (!id) {
+    id = crypto.randomUUID();
+    localStorage.setItem("quiz_session_id", id);
+  }
+  return id;
+}
 
 
-// ReactGA.initialize("G-W3M8628BRB",{
-//   debug:true,
-// })
-// ReactGA.default.send("pageview")
+const sessionId = getSessionId();
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
+    <App sessionId={sessionId} />
   </React.StrictMode>
 );
+
+
+

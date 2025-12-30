@@ -5,8 +5,15 @@ import "./index.css";
 import { quizzes } from "./data/quizzes";
 import { shuffleArray } from "./utils";
 import ProgressBar from "./components/ProgressBar";
+import { createClient } from '@supabase/supabase-js';
 
-export default function App() {
+const supabase = createClient(
+    'https://econidmgwpkzvdvrpnka.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVjb25pZG1nd3BrenZkdnJwbmthIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjcwMzAzOTUsImV4cCI6MjA4MjYwNjM5NX0.Z0MXoqxM_yEGsgooch5HotoWRTg7V5RwAyKYGpgFheU'
+  );
+
+export default function App({ sessionId }) {
+  console.log("Session ID:", sessionId);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selected, setSelected] = useState("");
   const [result, setResult] = useState("");
@@ -23,14 +30,30 @@ export default function App() {
     setShuffledOptions(shuffleArray(currentQuiz.options[language]));
   }, [currentIndex, language]);
 
-  const handleClick = (option) => {
+  const handleClick = async (option) => {
     setSelected(option);
     const isCorrect = option === currentQuiz.answer[language];
 
     gtag('event','quiz_answer',{
-      question_id : currentIndex + 1,
-      selected : option,
-      correct : isCorrect
+      question_index : currentIndex + 1,
+      selected_option : option,
+      is_correct : isCorrect
+    });
+
+    console.log("Sending event to Supabase:", {
+    session_id: sessionId,
+    question_index: currentIndex + 1,
+    selected_option: option,
+    is_correct: isCorrect
+  });
+
+
+    await supabase.from('quiz_events').insert({
+      session_id: sessionId || "test-session",
+      event_type: 'answer',
+      question_index: Number(currentIndex + 1),
+      selected_option: option,
+      is_correct: isCorrect
     });
 
     if (isCorrect) {
@@ -55,7 +78,7 @@ export default function App() {
     });
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     setSelected("");
     setResult("");
     if (currentIndex + 1 < quizzes.length) {
@@ -66,6 +89,12 @@ export default function App() {
         score:score,
         total:quizzes.length
       });
+      await supabase.from('quiz_events').insert({
+        session_id: sessionId,
+        event_type: 'complete',
+        score: score,
+        total: quizzes.length
+      });
     }
   };
 
@@ -74,8 +103,9 @@ export default function App() {
     if (typeof gtag === "function") {
       gtag('event','quiz_restart',{
         language:language
-      });r
+      });
     }
+
     setCurrentIndex(0);
     setScore(0);
     setIsFinished(false);
@@ -83,6 +113,21 @@ export default function App() {
     setResult("");
     setAnswers(Array(quizzes.length).fill(undefined));
   };
+
+  
+
+
+  useEffect(() => {
+    const sendStartEvent = async () => {
+      await supabase.from('quiz_events').insert({
+        session_id: sessionId,
+        event_type: 'start',
+      });
+    };
+    sendStartEvent();
+  },[]);
+
+
   const accuracy = score / quizzes.length;
   const isPassed = accuracy > 0.8; // ※ 0.8以下は不合格
 
